@@ -1,0 +1,306 @@
+{
+  "furnitures": [
+    {
+          "id": 0,
+          "image": "img/wicker-furniture.jpg",
+          "quantity": 0,
+          "type": "Tables and Chairs",
+          "name": "Wicker Furniture",
+          "price": 500,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 1,
+          "image": "img/lounge-chairs.jpg",
+          "quantity": 0,
+          "type": "Tables and Chairs",
+          "name": "Lounge Chairs",
+          "price": 200,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+          "id": 2,
+          "image": "img/zebra-table.jpg",
+          "quantity": 0,
+          "type": "Tables and Chairs",
+          "name": "Zebra Table",
+          "price": 10,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+          "id": 3,
+          "image": "img/boat-table.jpg",
+          "quantity": 0,
+          "type": "Tables and Chairs",
+          "name": "Boat Table",
+          "price": 150,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 4,
+          "image": "img/wrought-iron-chair.jpg",
+          "quantity": 0,
+          "type": "Tables and Chairs",
+          "name": "Wrought Iron Chair",
+          "price": 20,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 5,
+          "image": "img/daybed.jpg",
+          "quantity": 0,
+          "type": "Couches",
+          "name": "Daybed",
+          "price": 100,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    {
+          "id": 6,
+          "image": "img/sofa.jpg",
+          "quantity": 0,
+          "type": "Couches",
+          "name": "Sofa",
+          "price": 150,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 7,
+          "image": "img/king-bed.jpg",
+          "quantity": 0,
+          "type": "Beds",
+          "name": "King Bed",
+          "price": 300,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 8,
+          "image": "img/queen-bed.jpg",
+          "quantity": 0,
+          "type": "Beds",
+          "name": "Queen Bed",
+          "price": 200,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 9,
+          "image": "img/portable-bed.jpg",
+          "quantity": 0,
+          "type": "Beds",
+          "name": "Portable Bed",
+          "price": 50,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+          "id": 10,
+          "image": "img/lumbar-support-bed.jpg",
+          "quantity": 0,
+          "type": "Beds",
+          "name": "Lumbar Support Bed",
+          "price": 80,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+          "id": 11,
+          "image": "img/twin-bed.jpg",
+          "quantity": 0,
+          "type": "Beds",
+          "name": "Twin Bed",
+          "price": 100,
+		  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
+  ],
+  "comments": [
+    {
+      "id": 0,
+      "furnitureId": 1,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 1,
+      "furnitureId": 2,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 2,
+      "furnitureId": 2,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 3,
+      "furnitureId": 3,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 4,
+      "furnitureId": 3,
+      "rating": 3,
+      "text": "Pretty ok",
+      "author": "Ann Dabramov",
+      "date": "2018-07-23T19:44Z"
+    },
+    {
+      "id": 5,
+      "furnitureId": 3,
+      "rating": 5,
+      "text": "How magnificent!!",
+      "author": "Tinus Lorvaldes",
+      "date": "2018-10-25T16:30Z"
+    },
+    {
+      "id": 6,
+      "furnitureId": 3,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 7,
+      "furnitureId": 3,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 8,
+      "furnitureId": 5,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 9,
+      "furnitureId": 6,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 10,
+      "furnitureId": 6,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 11,
+      "furnitureId": 7,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 12,
+      "furnitureId": 7,
+      "rating": 3,
+      "text": "Pretty ok",
+      "author": "Ann Dabramov",
+      "date": "2018-07-23T19:44Z"
+    },
+    {
+      "id": 13,
+      "furnitureId": 7,
+      "rating": 5,
+      "text": "How magnificent!!",
+      "author": "Tinus Lorvaldes",
+      "date": "2018-10-25T16:30Z"
+    },
+    {
+      "id": 14,
+      "furnitureId": 7,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 15,
+      "furnitureId": 7,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 16,
+      "furnitureId": 9,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 17,
+      "furnitureId": 10,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    },
+    {
+      "id": 18,
+      "furnitureId": 10,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 19,
+      "furnitureId": 11,
+      "rating": 2,
+      "text": "Not pleased with the outcome",
+      "author": "Jordan Runn",
+      "date": "2019-08-04T20:11Z"
+    },
+    {
+      "id": 20,
+      "furnitureId": 11,
+      "rating": 3,
+      "text": "Pretty ok",
+      "author": "Ann Dabramov",
+      "date": "2018-07-23T19:44Z"
+    },
+    {
+      "id": 21,
+      "furnitureId": 11,
+      "rating": 5,
+      "text": "How magnificent!!",
+      "author": "Tinus Lorvaldes",
+      "date": "2018-10-25T16:30Z"
+    },
+    {
+      "id": 22,
+      "furnitureId": 11,
+      "rating": 4,
+      "text": "Very nice craftsmanship",
+      "author": "Brennen Ech",
+      "date": "2017-06-17T03:33Z"
+    },
+    {
+      "id": 23,
+      "furnitureId": 11,
+      "rating": 5,
+      "text": "I'd buy it again!",
+      "author": "McKenzie Sebastian",
+      "date": "2019-02-18T18:12Z"
+    }
+  ]
+}
