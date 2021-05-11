@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Card } from "react-native-elements";
+import { FURNITURES } from "../shared/furnitures";
 
 function RenderFurniture({ furniture }) {
 	if (furniture) {
@@ -16,8 +17,25 @@ function RenderFurniture({ furniture }) {
 	return <View />;
 }
 
-function FurnitureInfo(props) {
-	return <RenderFurniture furniture={props.furniture} />;
+class FurnitureInfo extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			furnitures: FURNITURES,
+		};
+	}
+
+	static navigationOptions = {
+		title: "Furniture Information",
+	};
+
+	render() {
+		const furnitureId = this.props.navigation.getParam("furnitureId");
+		const furniture = this.state.furnitures.filter(
+			furniture => furniture.id === furnitureId
+		)[0];
+		return <RenderFurniture furniture={furniture} />;
+	}
 }
 
 export default FurnitureInfo;
