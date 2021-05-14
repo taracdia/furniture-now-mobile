@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import { FURNITURES } from "../shared/furnitures";
 import { View, Platform } from "react-native";
 import FurnitureInfo from "./FurnitureInfoComponent";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
-import Directory from "DirectoryComponent";
+import Directory from "./DirectoryComponent";
 import Home from "./HomeComponent";
 import { createDrawerNavigator } from "react-navigation-drawer";
+import Constants from "expo-constants";
 
 const DirectoryNavigator = createStackNavigator(
 	{
@@ -63,9 +64,7 @@ class Main extends Component {
 				style={{
 					flex: 1,
 					paddingTop:
-						Platform.OS === "ios"
-							? 0
-							: Expo.Constants.statusBarHeight,
+						Platform.OS === "ios" ? 0 : Constants.statusBarHeight,
 				}}
 			>
 				<AppNavigator />

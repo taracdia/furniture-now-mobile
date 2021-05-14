@@ -8,7 +8,7 @@ function RenderFurniture({ furniture }) {
 		return (
 			<Card
 				featuredTitle={furniture.name}
-				image={require("./images/boat-table.jpg")}
+				image={require("../shared/images/boat-table.jpg")}
 			>
 				<Text style={{ margin: 10 }}>{furniture.description}</Text>
 			</Card>

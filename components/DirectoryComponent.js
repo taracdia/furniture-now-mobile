@@ -25,7 +25,9 @@ class Directory extends Component {
 					onPress={() =>
 						navigate("FurnitureInfo", { furnitureId: item.id })
 					}
-					leftAvatar={{ source: require("./images/boat-table.jpg") }}
+					leftAvatar={{
+						source: require("../shared/images/boat-table.jpg"),
+					}}
 				/>
 			);
 		};
