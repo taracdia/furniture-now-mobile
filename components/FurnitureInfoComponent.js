@@ -66,7 +66,7 @@ class FurnitureInfo extends Component {
 
 		return (
 			<ScrollView>
-				<RenderCampsite furniture={furniture} />
+				<RenderFurniture furniture={furniture} />
 				<RenderComments comments={comments} />
 			</ScrollView>
 		);
