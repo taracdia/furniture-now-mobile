@@ -1,7 +1,32 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, ScrollView, FlatList } from "react-native";
 import { Card } from "react-native-elements";
 import { FURNITURES } from "../shared/furnitures";
+import { COMMENTS } from "../shared/comments";
+
+function RenderComments({ comments }) {
+	const renderCommentItem = ({ item }) => {
+		return (
+			<View style={{ margin: 10 }}>
+				<Text style={{ fontSize: 14 }}>{item.text}</Text>
+				<Text style={{ fontSize: 12 }}>{item.rating} Stars</Text>
+				<Text
+					style={{ fontSize: 12 }}
+				>{`-- ${item.author}, ${item.date}`}</Text>
+			</View>
+		);
+	};
+
+	return (
+		<Card title="Comments">
+			<FlatList
+				data={comments}
+				renderItem={renderCommentItem}
+				keyExtractor={item => item.id.toString()}
+			/>
+		</Card>
+	);
+}
 
 function RenderFurniture({ furniture }) {
 	if (furniture) {
@@ -22,6 +47,7 @@ class FurnitureInfo extends Component {
 		super(props);
 		this.state = {
 			furnitures: FURNITURES,
+			comments: COMMENTS,
 		};
 	}
 
@@ -34,7 +60,16 @@ class FurnitureInfo extends Component {
 		const furniture = this.state.furnitures.filter(
 			furniture => furniture.id === furnitureId
 		)[0];
-		return <RenderFurniture furniture={furniture} />;
+		const comments = this.state.comments.filter(
+			comment => comment.furnitureId === furnitureId
+		);
+
+		return (
+			<ScrollView>
+				<RenderCampsite furniture={furniture} />
+				<RenderComments comments={comments} />
+			</ScrollView>
+		);
 	}
 }
 
