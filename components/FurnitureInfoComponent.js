@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, FlatList } from "react-native";
-import { Card } from "react-native-elements";
+import { Card, Icon } from "react-native-elements";
 import { FURNITURES } from "../shared/furnitures";
 import { COMMENTS } from "../shared/comments";
 
@@ -28,7 +28,8 @@ function RenderComments({ comments }) {
 	);
 }
 
-function RenderFurniture({ furniture }) {
+function RenderFurniture(props) {
+	const { furniture } = props;
 	if (furniture) {
 		return (
 			<Card
@@ -36,6 +37,18 @@ function RenderFurniture({ furniture }) {
 				image={require("../shared/images/boat-table.jpg")}
 			>
 				<Text style={{ margin: 10 }}>{furniture.description}</Text>
+				<Icon
+					name={props.favorite ? "heart" : "heart-o"}
+					type="font-awesome"
+					color="#f50"
+					raised
+					reverse
+					onPress={() =>
+						props.favorite
+							? console.log("Already set as a favorite")
+							: props.markFavorite()
+					}
+				/>
 			</Card>
 		);
 	}
@@ -48,12 +61,17 @@ class FurnitureInfo extends Component {
 		this.state = {
 			furnitures: FURNITURES,
 			comments: COMMENTS,
+			favorite: false,
 		};
 	}
 
 	static navigationOptions = {
 		title: "Furniture Information",
 	};
+
+	markFavorite() {
+		this.setState({ favorite: true });
+	}
 
 	render() {
 		const furnitureId = this.props.navigation.getParam("furnitureId");
@@ -66,7 +84,11 @@ class FurnitureInfo extends Component {
 
 		return (
 			<ScrollView>
-				<RenderFurniture furniture={furniture} />
+				<RenderFurniture
+					furniture={furniture}
+					favorite={this.state.favorite}
+					markFavorite={() => this.markFavorite()}
+				/>
 				<RenderComments comments={comments} />
 			</ScrollView>
 		);
