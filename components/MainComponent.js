@@ -19,6 +19,13 @@ import Contact from "./ContactComponent";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import Constants from "expo-constants";
 import { Icon } from "react-native-elements";
+import { connect } from "react-redux";
+import { fetchFurnitures, fetchComments } from "../redux/ActionCreators";
+
+const mapDispatchToProps = {
+	fetchFurnitures,
+	fetchComments,
+};
 
 const DirectoryNavigator = createStackNavigator(
 	{
@@ -214,6 +221,10 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
+	componentDidMount() {
+		this.props.fetchFurnitures();
+		this.props.fetchComments();
+	}
 	render() {
 		return (
 			<View
@@ -258,4 +269,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Main;
+export default connect(null, mapDispatchToProps)(Main);

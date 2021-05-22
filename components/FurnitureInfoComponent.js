@@ -3,6 +3,15 @@ import { Text, View, ScrollView, FlatList } from "react-native";
 import { Card, Icon } from "react-native-elements";
 import { FURNITURES } from "../shared/furnitures";
 import { COMMENTS } from "../shared/comments";
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
+
+const mapStateToProps = state => {
+	return {
+		furnitures: state.furnitures,
+		comments: state.comments,
+	};
+};
 
 function RenderComments({ comments }) {
 	const renderCommentItem = ({ item }) => {
@@ -17,8 +26,14 @@ function RenderComments({ comments }) {
 		);
 	};
 
+	console.log("comments: ", comments);
+
 	return (
 		<Card title="Comments">
+			{/* todo: */}
+			{/* <ScrollView>
+                
+            </ScrollView> */}
 			<FlatList
 				data={comments}
 				renderItem={renderCommentItem}
@@ -34,7 +49,7 @@ function RenderFurniture(props) {
 		return (
 			<Card
 				featuredTitle={furniture.name}
-				image={require("../shared/images/boat-table.jpg")}
+				image={{ uri: baseUrl + furniture.image }}
 			>
 				<Text style={{ margin: 10 }}>{furniture.description}</Text>
 				<Icon
@@ -59,8 +74,6 @@ class FurnitureInfo extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			furnitures: FURNITURES,
-			comments: COMMENTS,
 			favorite: false,
 		};
 	}
@@ -75,10 +88,10 @@ class FurnitureInfo extends Component {
 
 	render() {
 		const furnitureId = this.props.navigation.getParam("furnitureId");
-		const furniture = this.state.furnitures.filter(
+		const furniture = this.props.furnitures.furnitures.filter(
 			furniture => furniture.id === furnitureId
 		)[0];
-		const comments = this.state.comments.filter(
+		const comments = this.props.comments.comments.filter(
 			comment => comment.furnitureId === furnitureId
 		);
 
@@ -95,4 +108,4 @@ class FurnitureInfo extends Component {
 	}
 }
 
-export default FurnitureInfo;
+export default connect(mapStateToProps)(FurnitureInfo);
