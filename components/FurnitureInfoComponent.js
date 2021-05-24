@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, FlatList } from "react-native";
 import { Card, Icon } from "react-native-elements";
-import { FURNITURES } from "../shared/furnitures";
-import { COMMENTS } from "../shared/comments";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
+import { postFavorite } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
 	return {
 		furnitures: state.furnitures,
 		comments: state.comments,
+		favorites: state.favorites,
 	};
+};
+
+const mapDispatchToProps = {
+	postFavorite: furnitureId => postFavorite(furnitureId),
 };
 
 function RenderComments({ comments }) {
@@ -71,19 +75,12 @@ function RenderFurniture(props) {
 }
 
 class FurnitureInfo extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			favorite: false,
-		};
-	}
-
 	static navigationOptions = {
 		title: "Furniture Information",
 	};
 
-	markFavorite() {
-		this.setState({ favorite: true });
+	markFavorite(furnitureId) {
+		this.props.postFavorite(furnitureId);
 	}
 
 	render() {
@@ -99,8 +96,8 @@ class FurnitureInfo extends Component {
 			<ScrollView>
 				<RenderFurniture
 					furniture={furniture}
-					favorite={this.state.favorite}
-					markFavorite={() => this.markFavorite()}
+					favorite={this.props.favorites.includes(furnitureId)}
+					markFavorite={() => this.markFavorite(furnitureId)}
 				/>
 				<RenderComments comments={comments} />
 			</ScrollView>
@@ -108,4 +105,4 @@ class FurnitureInfo extends Component {
 	}
 }
 
-export default connect(mapStateToProps)(FurnitureInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(FurnitureInfo);
