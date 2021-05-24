@@ -75,13 +75,14 @@ export const addFurnitures = furnitures => ({
 	payload: furnitures,
 });
 
-export const postFavorite = campsiteId => dispatch => {
+export const postFavorite = furnitureId => dispatch => {
+	console.log(furnitureId);
 	setTimeout(() => {
-		dispatch(addFavorite(campsiteId));
+		dispatch(addFavorite(furnitureId));
 	}, 2000);
 };
 
-export const addFavorite = campsiteId => ({
+export const addFavorite = furnitureId => ({
 	type: ActionTypes.ADD_FAVORITE,
-	payload: campsiteId,
+	payload: furnitureId,
 });

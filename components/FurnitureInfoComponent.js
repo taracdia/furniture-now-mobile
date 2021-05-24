@@ -30,8 +30,6 @@ function RenderComments({ comments }) {
 		);
 	};
 
-	console.log("comments: ", comments);
-
 	return (
 		<Card title="Comments">
 			{/* todo: */}

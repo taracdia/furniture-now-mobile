@@ -7,7 +7,6 @@ export const favorites = (state = [], action) => {
 				return state;
 			}
 			return state.concat(action.payload);
-
 		default:
 			return state;
 	}
