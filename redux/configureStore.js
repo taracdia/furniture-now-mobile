@@ -12,7 +12,7 @@ export const ConfigureStore = () => {
 			comments,
 			favorites,
 		}),
-		applyMiddleware(thunk)
+		applyMiddleware(thunk, logger)
 	);
 
 	return store;
