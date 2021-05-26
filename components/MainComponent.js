@@ -238,7 +238,7 @@ const MainNavigator = createDrawerNavigator(
 		Reservation: {
 			screen: ReservationNavigator,
 			navigationOptions: {
-				drawerLabel: "Reserve Campsite",
+				drawerLabel: "Reserve Furniture",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
 						name="tree"

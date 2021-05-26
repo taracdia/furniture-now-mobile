@@ -25,7 +25,7 @@ class Reservation extends Component {
 	}
 
 	static navigationOptions = {
-		title: "Reserve Campsite",
+		title: "Reserve Furniture",
 	};
 
 	toggleModal() {
@@ -111,7 +111,7 @@ class Reservation extends Component {
 						onPress={() => this.handleReservation()}
 						title="Search"
 						color="#5637DD"
-						accessibilityLabel="Tap me to search for available campsites to reserve"
+						accessibilityLabel="Tap me to search for available furnitures to reserve"
 					/>
 				</View>
 				<Modal
@@ -122,7 +122,7 @@ class Reservation extends Component {
 				>
 					<View style={styles.modal}>
 						<Text style={styles.modalTitle}>
-							Search Campsite Reservations
+							Search Furniture Reservations
 						</Text>
 						<Text style={styles.modalText}>
 							Number of Campers: {this.state.campers}
