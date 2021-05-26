@@ -46,13 +46,15 @@ function RenderComments({ comments }) {
 	};
 
 	return (
-		<Card title="Comments">
-			<FlatList
-				data={comments}
-				renderItem={renderCommentItem}
-				keyExtractor={item => item.id.toString()}
-			/>
-		</Card>
+		<Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
+			<Card title="Comments">
+				<FlatList
+					data={comments}
+					renderItem={renderCommentItem}
+					keyExtractor={item => item.id.toString()}
+				/>
+			</Card>
+		</Animatable.View>
 	);
 }
 
@@ -61,35 +63,41 @@ function RenderFurniture(props) {
 
 	if (furniture) {
 		return (
-			<Card
-				featuredTitle={furniture.name}
-				image={{ uri: baseUrl + furniture.image }}
+			<Animatable.View
+				animation="fadeInDown"
+				duration={2000}
+				delay={1000}
 			>
-				<Text style={{ margin: 10 }}>{furniture.description}</Text>
-				<View style={styles.cardRow}>
-					<Icon
-						name={props.favorite ? "heart" : "heart-o"}
-						type="font-awesome"
-						color="#f50"
-						raised
-						reverse
-						onPress={() =>
-							props.favorite
-								? console.log("Already")
-								: props.markFavorite()
-						}
-					/>
-					<Icon
-						name={"pencil"}
-						type="font-awesome"
-						color="#5637DD"
-						raised
-						reverse
-						style={styles.cardItem}
-						onPress={() => props.onShowModal()}
-					/>
-				</View>
-			</Card>
+				<Card
+					featuredTitle={furniture.name}
+					image={{ uri: baseUrl + furniture.image }}
+				>
+					<Text style={{ margin: 10 }}>{furniture.description}</Text>
+					<View style={styles.cardRow}>
+						<Icon
+							name={props.favorite ? "heart" : "heart-o"}
+							type="font-awesome"
+							color="#f50"
+							raised
+							reverse
+							onPress={() =>
+								props.favorite
+									? console.log("Already")
+									: props.markFavorite()
+							}
+						/>
+						<Icon
+							name={"pencil"}
+							type="font-awesome"
+							color="#5637DD"
+							raised
+							reverse
+							style={styles.cardItem}
+							onPress={() => props.onShowModal()}
+						/>
+					</View>
+				</Card>
+			</Animatable.View>
 		);
 	}
 	return <View />;
