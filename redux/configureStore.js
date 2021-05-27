@@ -4,10 +4,18 @@ import logger from "redux-logger";
 import { furnitures } from "./furnitures";
 import { comments } from "./comments";
 import { favorites } from "./favorites";
+import { persistStore, persistCombineReducers } from "redux-persist";
+import storage from "redux-persist/es/storage";
+
+const config = {
+	key: "root",
+	storage,
+	debug: true,
+};
 
 export const ConfigureStore = () => {
 	const store = createStore(
-		combineReducers({
+		persistCombineReducers(config, {
 			furnitures,
 			comments,
 			favorites,
@@ -15,5 +23,7 @@ export const ConfigureStore = () => {
 		applyMiddleware(thunk, logger)
 	);
 
-	return store;
+	const persistor = persistStore(store);
+
+	return { persistor, store };
 };
