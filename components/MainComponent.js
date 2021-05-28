@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FURNITURES } from "../shared/furnitures";
 import {
 	View,
 	Platform,
