@@ -1,10 +1,11 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { bgColor, white, drawerBg } from "../Colors";
 
 function Loading() {
 	return (
 		<View style={styles.loadingView}>
-			<ActivityIndicator size="large" color="#5637DD" />
+			<ActivityIndicator size="large" color={bgColor} />
 			<Text style={styles.loadingText}>Loading . . .</Text>
 		</View>
 	);
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	loadingText: {
-		color: "#5637DD",
+		color: bgColor,
 		fontSize: 14,
 		fontWeight: "bold",
 	},

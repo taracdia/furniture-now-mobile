@@ -23,6 +23,8 @@ import { fetchFurnitures, fetchComments } from "../redux/ActionCreators";
 import Reservation from "./ReservationComponent";
 import Favorites from "./FavoritesComponent";
 import Login from "./LoginComponent";
+import { baseUrl } from "../shared/baseUrl";
+import { bgColor, white, drawerBg } from "../Colors";
 
 const mapDispatchToProps = {
 	fetchFurnitures,
@@ -36,11 +38,11 @@ const LoginNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
@@ -61,15 +63,15 @@ const FavoritesNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
-					name="heart"
+					name="shopping-cart"
 					type="font-awesome"
 					iconStyle={styles.stackIcon}
 					onPress={() => navigation.toggleDrawer()}
@@ -86,15 +88,15 @@ const ReservationNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
-					name="tree"
+					name="calendar"
 					type="font-awesome"
 					iconStyle={styles.stackIcon}
 					onPress={() => navigation.toggleDrawer()}
@@ -125,11 +127,11 @@ const DirectoryNavigator = createStackNavigator(
 		initialRouteName: "Directory",
 		defaultNavigationOptions: {
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 		},
 	}
@@ -142,11 +144,11 @@ const HomeNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
@@ -167,11 +169,11 @@ const AboutNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
@@ -192,11 +194,11 @@ const ContactNavigator = createStackNavigator(
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
 			headerStyle: {
-				backgroundColor: "#5637DD",
+				backgroundColor: bgColor,
 			},
-			headerTintColor: "#fff",
+			headerTintColor: white,
 			headerTitleStyle: {
-				color: "#fff",
+				color: white,
 			},
 			headerLeft: (
 				<Icon
@@ -219,12 +221,12 @@ const CustomDrawerContentComponent = props => (
 			<View style={styles.drawerHeader}>
 				<View style={{ flex: 1 }}>
 					<Image
-						source={require("../shared/images/logo.svg")}
+						source={{ uri: baseUrl + "img/logo.png" }}
 						style={styles.drawerImage}
 					/>
 				</View>
 				<View style={{ flex: 2 }}>
-					<Text style={styles.drawerHeaderText}>NuCamp</Text>
+					<Text style={styles.drawerHeaderText}>FurnitureNow!</Text>
 				</View>
 			</View>
 			<DrawerItems {...props} />
@@ -276,10 +278,10 @@ const MainNavigator = createDrawerNavigator(
 		Reservation: {
 			screen: ReservationNavigator,
 			navigationOptions: {
-				drawerLabel: "Reserve Furniture",
+				drawerLabel: "Reserve Walk-through",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
-						name="tree"
+						name="calendar"
 						type="font-awesome"
 						size={24}
 						color={tintColor}
@@ -294,7 +296,7 @@ const MainNavigator = createDrawerNavigator(
 				drawerLabel: "My Favorites",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
-						name="heart"
+						name="shopping-cart"
 						type="font-awesome"
 						size={24}
 						color={tintColor}
@@ -334,7 +336,7 @@ const MainNavigator = createDrawerNavigator(
 	},
 	{
 		initialRouteName: "Home",
-		drawerBackgroundColor: "#CEC8FF",
+		drawerBackgroundColor: drawerBg,
 		contentComponent: CustomDrawerContentComponent,
 	}
 );
@@ -366,7 +368,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	drawerHeader: {
-		backgroundColor: "#5637DD",
+		backgroundColor: bgColor,
 		height: 140,
 		alignItems: "center",
 		justifyContent: "center",
@@ -374,7 +376,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	drawerHeaderText: {
-		color: "#fff",
+		color: white,
 		fontSize: 24,
 		fontWeight: "bold",
 	},
@@ -385,7 +387,7 @@ const styles = StyleSheet.create({
 	},
 	stackIcon: {
 		marginLeft: 10,
-		color: "#fff",
+		color: white,
 		fontSize: 24,
 	},
 });

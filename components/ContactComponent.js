@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
+import { bgColor, white, drawerBg } from "../Colors";
 
 class Contact extends Component {
 	sendMail() {
@@ -15,12 +16,12 @@ class Contact extends Component {
 			<View>
 				<Button
 					title="Send Email"
-					buttonStyle={{ backgroundColor: "#5637DD", margin: 40 }}
+					buttonStyle={{ backgroundColor: bgColor, margin: 40 }}
 					icon={
 						<Icon
 							name="envelope-o"
 							type="font-awesome"
-							color="#fff"
+							color={white}
 							iconStyle={{ marginRight: 10 }}
 						/>
 					}

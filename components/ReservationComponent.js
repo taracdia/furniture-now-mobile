@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Notifications from "expo-notifications";
+import { bgColor, white, drawerBg } from "../Colors";
 
 class Reservation extends Component {
 	constructor(props) {
@@ -118,7 +119,7 @@ class Reservation extends Component {
 					<Switch
 						style={styles.formItem}
 						value={this.state.hikeIn}
-						trackColor={{ true: "#5637DD", false: null }}
+						trackColor={{ true: bgColor, false: null }}
 						onValueChange={value =>
 							this.setState({ hikeIn: value })
 						}
@@ -155,7 +156,7 @@ class Reservation extends Component {
 					<Button
 						onPress={() => this.handleReservation()}
 						title="Search"
-						color="#5637DD"
+						color={bgColor}
 						accessibilityLabel="Tap me to search for available campsites to reserve"
 					/>
 				</View>

@@ -6,6 +6,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { baseUrl } from "../shared/baseUrl";
+import { bgColor, white, gray, drawerBg } from "../Colors";
 
 class LoginTab extends Component {
 	constructor(props) {
@@ -93,11 +94,11 @@ class LoginTab extends Component {
 							<Icon
 								name="sign-in"
 								type="font-awesome"
-								color="#fff"
+								color={white}
 								iconStyle={{ marginRight: 10 }}
 							/>
 						}
-						buttonStyle={{ backgroundColor: "#5637DD" }}
+						buttonStyle={{ backgroundColor: bgColor }}
 					/>
 				</View>
 				<View style={styles.formButton}>
@@ -123,6 +124,8 @@ class LoginTab extends Component {
 	}
 }
 
+//TODO: find a way to incorporate logo
+
 class RegisterTab extends Component {
 	constructor(props) {
 		super(props);
@@ -134,7 +137,7 @@ class RegisterTab extends Component {
 			lastname: "",
 			email: "",
 			remember: false,
-			imageUrl: baseUrl + "images/logo.png",
+			imageUrl: baseUrl + "img/king-bed.jpg",
 		};
 	}
 
@@ -194,7 +197,9 @@ class RegisterTab extends Component {
 					<View style={styles.imageContainer}>
 						<Image
 							source={{ uri: this.state.imageUrl }}
-							loadingIndicatorSource={require("./images/logo.png")}
+							loadingIndicatorSource={{
+								uri: baseUrl + "img/king-bed.jpg",
+							}}
 							style={styles.image}
 						/>
 						<Button
@@ -259,11 +264,11 @@ class RegisterTab extends Component {
 								<Icon
 									name="user-plus"
 									type="font-awesome"
-									color="#fff"
+									color={white}
 									iconStyle={{ marginRight: 10 }}
 								/>
 							}
-							buttonStyle={{ backgroundColor: "#5637DD" }}
+							buttonStyle={{ backgroundColor: bgColor }}
 						/>
 					</View>
 				</View>
@@ -279,10 +284,10 @@ const Login = createBottomTabNavigator(
 	},
 	{
 		tabBarOptions: {
-			activeBackgroundColor: "#5637DD",
-			inactiveBackgroundColor: "#CEC8FF",
-			activeTintColor: "#fff",
-			inactiveTintColor: "#808080",
+			activeBackgroundColor: bgColor,
+			inactiveBackgroundColor: drawerBg,
+			activeTintColor: white,
+			inactiveTintColor: gray,
 			labelStyle: { fontSize: 16 },
 		},
 	}
