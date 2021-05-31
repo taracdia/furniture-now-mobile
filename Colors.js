@@ -1,4 +1,5 @@
-export const bgColor = "#5637DD";
+export const primaryColor = "#193075";
+export const primaryLight = "#7c97e6";
+export const secondaryColor = "#ff9d00";
 export const white = "#fff";
-export const drawerBg = "#CEC8FF";
 export const gray = "#808080";

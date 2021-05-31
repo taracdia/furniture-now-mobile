@@ -11,14 +11,14 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Notifications from "expo-notifications";
-import { bgColor, white, drawerBg } from "../Colors";
+import { primaryColor, white, primaryLight } from "../Colors";
 
 class Reservation extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			campers: 1,
+			guests: 1,
 			hikeIn: false,
 			date: "",
 		};
@@ -33,7 +33,7 @@ class Reservation extends Component {
 		Alert.alert(
 			"Begin Search?",
 			"Number of Campers: " +
-				this.state.campers +
+				this.state.guests +
 				"\n\nHike-In? " +
 				this.state.hikeIn +
 				"\n\nDate: " +
@@ -47,10 +47,7 @@ class Reservation extends Component {
 				{
 					text: "OK",
 					onPress: () => {
-						this.presentLocalNotification(
-							// this.state.date.toLocaleDateString("en-US")
-							this.state.date
-						);
+						this.presentLocalNotification(this.state.date);
 						this.resetForm();
 					},
 				},
@@ -61,7 +58,7 @@ class Reservation extends Component {
 
 	resetForm() {
 		this.setState({
-			campers: 1,
+			guests: 1,
 			hikeIn: false,
 			date: "",
 		});
@@ -101,9 +98,9 @@ class Reservation extends Component {
 					<Text style={styles.formLabel}>Number of Campers</Text>
 					<Picker
 						style={styles.formItem}
-						selectedValue={this.state.campers}
+						selectedValue={this.state.guests}
 						onValueChange={itemValue =>
-							this.setState({ campers: itemValue })
+							this.setState({ guests: itemValue })
 						}
 					>
 						<Picker.Item label="1" value="1" />
@@ -119,7 +116,7 @@ class Reservation extends Component {
 					<Switch
 						style={styles.formItem}
 						value={this.state.hikeIn}
-						trackColor={{ true: bgColor, false: null }}
+						trackColor={{ true: primaryColor, false: null }}
 						onValueChange={value =>
 							this.setState({ hikeIn: value })
 						}
@@ -156,8 +153,8 @@ class Reservation extends Component {
 					<Button
 						onPress={() => this.handleReservation()}
 						title="Search"
-						color={bgColor}
-						accessibilityLabel="Tap me to search for available campsites to reserve"
+						color={primaryColor}
+						accessibilityLabel="Tap me to search for available days to reserve"
 					/>
 				</View>
 			</Animatable.View>

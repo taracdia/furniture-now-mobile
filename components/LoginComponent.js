@@ -6,7 +6,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { baseUrl } from "../shared/baseUrl";
-import { bgColor, white, gray, drawerBg } from "../Colors";
+import { primaryColor, white, gray, primaryLight } from "../Colors";
 
 class LoginTab extends Component {
 	constructor(props) {
@@ -98,7 +98,7 @@ class LoginTab extends Component {
 								iconStyle={{ marginRight: 10 }}
 							/>
 						}
-						buttonStyle={{ backgroundColor: bgColor }}
+						buttonStyle={{ backgroundColor: primaryColor }}
 					/>
 				</View>
 				<View style={styles.formButton}>
@@ -268,7 +268,7 @@ class RegisterTab extends Component {
 									iconStyle={{ marginRight: 10 }}
 								/>
 							}
-							buttonStyle={{ backgroundColor: bgColor }}
+							buttonStyle={{ backgroundColor: primaryColor }}
 						/>
 					</View>
 				</View>
@@ -284,8 +284,8 @@ const Login = createBottomTabNavigator(
 	},
 	{
 		tabBarOptions: {
-			activeBackgroundColor: bgColor,
-			inactiveBackgroundColor: drawerBg,
+			activeBackgroundColor: primaryColor,
+			inactiveBackgroundColor: primaryLight,
 			activeTintColor: white,
 			inactiveTintColor: gray,
 			labelStyle: { fontSize: 16 },

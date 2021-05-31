@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { View } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
-import { bgColor, white, drawerBg } from "../Colors";
+import { primaryColor, white, primaryLight } from "../Colors";
 
 class Contact extends Component {
 	sendMail() {
 		MailComposer.composeAsync({
-			recipients: ["campsites@nucamp.co"],
+			recipients: ["example@gmail.com"],
 			subject: "Inquiry",
 			body: "To whom it may concern:",
 		});
@@ -16,7 +16,7 @@ class Contact extends Component {
 			<View>
 				<Button
 					title="Send Email"
-					buttonStyle={{ backgroundColor: bgColor, margin: 40 }}
+					buttonStyle={{ backgroundColor: primaryColor, margin: 40 }}
 					icon={
 						<Icon
 							name="envelope-o"

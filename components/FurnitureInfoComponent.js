@@ -16,7 +16,7 @@ import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postFavorite, postComment } from "../redux/ActionCreators";
 import * as Animatable from "react-native-animatable";
-import { bgColor, white, gray } from "../Colors";
+import { primaryColor, white, gray } from "../Colors";
 
 const mapStateToProps = state => {
 	return {
@@ -155,7 +155,7 @@ function RenderFurniture(props) {
 						<Icon
 							name={"pencil"}
 							type="font-awesome"
-							color={bgColor}
+							color={primaryColor}
 							raised
 							reverse
 							style={styles.cardItem}
@@ -164,14 +164,14 @@ function RenderFurniture(props) {
 						<Icon
 							name={"share"}
 							type="font-awesome"
-							color={bgColor}
+							color={primaryColor}
 							raised
 							reverse
 							onPress={() =>
 								shareCampsite(
-									campsite.name,
-									campsite.description,
-									baseUrl + campsite.image
+									furniture.name,
+									furniture.description,
+									baseUrl + furniture.image
 								)
 							}
 						/>
@@ -283,7 +283,7 @@ class FurnitureInfo extends Component {
 						<View>
 							<Button
 								title="Submit"
-								color={bgColor}
+								color={primaryColor}
 								onPress={() => {
 									this.handleComment(furnitureId);
 									this.resetForm();

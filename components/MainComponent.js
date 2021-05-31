@@ -24,193 +24,12 @@ import Reservation from "./ReservationComponent";
 import Favorites from "./FavoritesComponent";
 import Login from "./LoginComponent";
 import { baseUrl } from "../shared/baseUrl";
-import { bgColor, white, drawerBg } from "../Colors";
+import { primaryColor, white, primaryLight, secondaryColor } from "../Colors";
 
 const mapDispatchToProps = {
 	fetchFurnitures,
 	fetchComments,
 };
-
-const LoginNavigator = createStackNavigator(
-	{
-		Login: { screen: Login },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="sign-in"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
-
-const FavoritesNavigator = createStackNavigator(
-	{
-		Favorites: { screen: Favorites },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="shopping-cart"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
-
-const ReservationNavigator = createStackNavigator(
-	{
-		Reservation: { screen: Reservation },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="calendar"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
-
-const DirectoryNavigator = createStackNavigator(
-	{
-		Directory: {
-			screen: Directory,
-			navigationOptions: ({ navigation }) => ({
-				headerLeft: (
-					<Icon
-						name="list"
-						type="font-awesome"
-						iconStyle={styles.stackIcon}
-						onPress={() => navigation.toggleDrawer()}
-					/>
-				),
-			}),
-		},
-		FurnitureInfo: { screen: FurnitureInfo },
-	},
-	{
-		initialRouteName: "Directory",
-		defaultNavigationOptions: {
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-		},
-	}
-);
-
-const HomeNavigator = createStackNavigator(
-	{
-		Home: { screen: Home },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="home"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
-
-const AboutNavigator = createStackNavigator(
-	{
-		About: { screen: About },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="info-circle"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
-
-const ContactNavigator = createStackNavigator(
-	{
-		Contact: { screen: Contact },
-	},
-	{
-		defaultNavigationOptions: ({ navigation }) => ({
-			headerStyle: {
-				backgroundColor: bgColor,
-			},
-			headerTintColor: white,
-			headerTitleStyle: {
-				color: white,
-			},
-			headerLeft: (
-				<Icon
-					name="address-card"
-					type="font-awesome"
-					iconStyle={styles.stackIcon}
-					onPress={() => navigation.toggleDrawer()}
-				/>
-			),
-		}),
-	}
-);
 
 const CustomDrawerContentComponent = props => (
 	<ScrollView>
@@ -233,6 +52,79 @@ const CustomDrawerContentComponent = props => (
 		</SafeAreaView>
 	</ScrollView>
 );
+
+const createNavigator = (screenName, screenItem, iconName) => {
+	return createStackNavigator(
+		{
+			[screenName]: { screen: screenItem },
+		},
+		{
+			defaultNavigationOptions: ({ navigation }) => ({
+				headerStyle: {
+					backgroundColor: primaryColor,
+				},
+				headerTintColor: white,
+				headerTitleStyle: {
+					color: white,
+				},
+				headerLeft: (
+					<Icon
+						name={iconName}
+						type="font-awesome"
+						iconStyle={styles.stackIcon}
+						onPress={() => navigation.toggleDrawer()}
+					/>
+				),
+			}),
+		}
+	);
+};
+const LoginNavigator = createNavigator("Login", Login, "sign-in");
+const HomeNavigator = createNavigator("Home", Home, "home");
+
+const DirectoryNavigator = createStackNavigator(
+	{
+		Directory: {
+			screen: Directory,
+			navigationOptions: ({ navigation }) => ({
+				headerLeft: (
+					<Icon
+						name="list"
+						type="font-awesome"
+						iconStyle={styles.stackIcon}
+						onPress={() => navigation.toggleDrawer()}
+					/>
+				),
+			}),
+		},
+		FurnitureInfo: { screen: FurnitureInfo },
+	},
+	{
+		initialRouteName: "Directory",
+		defaultNavigationOptions: {
+			headerStyle: {
+				backgroundColor: primaryColor,
+			},
+			headerTintColor: white,
+			headerTitleStyle: {
+				color: white,
+			},
+		},
+	}
+);
+
+const ReservationNavigator = createNavigator(
+	"Reservation",
+	Reservation,
+	"calendar"
+);
+const FavoritesNavigator = createNavigator(
+	"Favorites",
+	Favorites,
+	"shopping-cart"
+);
+const AboutNavigator = createNavigator("About", About, "info-circle");
+const ContactNavigator = createNavigator("Contact", Contact, "address-card");
 
 const MainNavigator = createDrawerNavigator(
 	{
@@ -336,8 +228,11 @@ const MainNavigator = createDrawerNavigator(
 	},
 	{
 		initialRouteName: "Home",
-		drawerBackgroundColor: drawerBg,
+		drawerBackgroundColor: primaryLight,
 		contentComponent: CustomDrawerContentComponent,
+		contentOptions: {
+			activeTintColor: secondaryColor,
+		},
 	}
 );
 
@@ -368,7 +263,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	drawerHeader: {
-		backgroundColor: bgColor,
+		backgroundColor: primaryColor,
 		height: 140,
 		alignItems: "center",
 		justifyContent: "center",
