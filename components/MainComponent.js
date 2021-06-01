@@ -53,35 +53,6 @@ const CustomDrawerContentComponent = props => (
 	</ScrollView>
 );
 
-const createNavigator = (screenName, screenItem, iconName) => {
-	return createStackNavigator(
-		{
-			[screenName]: { screen: screenItem },
-		},
-		{
-			defaultNavigationOptions: ({ navigation }) => ({
-				headerStyle: {
-					backgroundColor: primaryColor,
-				},
-				headerTintColor: white,
-				headerTitleStyle: {
-					color: white,
-				},
-				headerLeft: (
-					<Icon
-						name={iconName}
-						type="font-awesome"
-						iconStyle={styles.stackIcon}
-						onPress={() => navigation.toggleDrawer()}
-					/>
-				),
-			}),
-		}
-	);
-};
-const LoginNavigator = createNavigator("Login", Login, "sign-in");
-const HomeNavigator = createNavigator("Home", Home, "home");
-
 const DirectoryNavigator = createStackNavigator(
 	{
 		Directory: {
@@ -113,23 +84,37 @@ const DirectoryNavigator = createStackNavigator(
 	}
 );
 
-const ReservationNavigator = createNavigator(
-	"Reservation",
-	Reservation,
-	"calendar"
-);
-const FavoritesNavigator = createNavigator(
-	"Favorites",
-	Favorites,
-	"shopping-cart"
-);
-const AboutNavigator = createNavigator("About", About, "info-circle");
-const ContactNavigator = createNavigator("Contact", Contact, "address-card");
+const createNavigator = (screenName, screenItem, iconName) => {
+	return createStackNavigator(
+		{
+			[screenName]: { screen: screenItem },
+		},
+		{
+			defaultNavigationOptions: ({ navigation }) => ({
+				headerStyle: {
+					backgroundColor: primaryColor,
+				},
+				headerTintColor: white,
+				headerTitleStyle: {
+					color: white,
+				},
+				headerLeft: (
+					<Icon
+						name={iconName}
+						type="font-awesome"
+						iconStyle={styles.stackIcon}
+						onPress={() => navigation.toggleDrawer()}
+					/>
+				),
+			}),
+		}
+	);
+};
 
 const MainNavigator = createDrawerNavigator(
 	{
 		Login: {
-			screen: LoginNavigator,
+			screen: createNavigator("Login", Login, "sign-in"),
 			navigationOptions: {
 				drawerIcon: ({ tintColor }) => (
 					<Icon
@@ -142,7 +127,7 @@ const MainNavigator = createDrawerNavigator(
 			},
 		},
 		Home: {
-			screen: HomeNavigator,
+			screen: createNavigator("Home", Home, "home"),
 			navigationOptions: {
 				drawerIcon: ({ tintColor }) => (
 					<Icon
@@ -168,9 +153,9 @@ const MainNavigator = createDrawerNavigator(
 			},
 		},
 		Reservation: {
-			screen: ReservationNavigator,
+			screen: createNavigator("Reservation", Reservation, "calendar"),
 			navigationOptions: {
-				drawerLabel: "Reserve Walk-through",
+				drawerLabel: "Reserve Walkthrough",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
 						name="calendar"
@@ -183,12 +168,26 @@ const MainNavigator = createDrawerNavigator(
 		},
 
 		Favorites: {
-			screen: FavoritesNavigator,
+			screen: createNavigator("Favorites", Favorites, "shopping-cart"),
 			navigationOptions: {
-				drawerLabel: "My Favorites",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
 						name="shopping-cart"
+						type="font-awesome"
+						size={24}
+						// color={tintColor}
+					/>
+				),
+			},
+		},
+
+		Contact: {
+			screen: createNavigator("Contact", Contact, "address-card"),
+			navigationOptions: {
+				drawerLabel: "Contact Us",
+				drawerIcon: ({ tintColor }) => (
+					<Icon
+						name="address-card"
 						type="font-awesome"
 						size={24}
 						color={tintColor}
@@ -197,27 +196,11 @@ const MainNavigator = createDrawerNavigator(
 			},
 		},
 		About: {
-			screen: AboutNavigator,
+			screen: createNavigator("About", About, "info-circle"),
 			navigationOptions: {
-				drawerLabel: "About Us",
 				drawerIcon: ({ tintColor }) => (
 					<Icon
 						name="info-circle"
-						type="font-awesome"
-						size={24}
-						color={tintColor}
-					/>
-				),
-			},
-		},
-
-		Contact: {
-			screen: ContactNavigator,
-			navigationOptions: {
-				drawerLabel: "Contact Us",
-				drawerIcon: ({ tintColor }) => (
-					<Icon
-						name="address-card"
 						type="font-awesome"
 						size={24}
 						color={tintColor}
