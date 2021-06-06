@@ -110,3 +110,11 @@ export const deleteFavorite = furnitureId => ({
 	type: ActionTypes.DELETE_FAVORITE,
 	payload: furnitureId,
 });
+
+export const changeFurnitureNumber = (furnitureId, number) => ({
+	type: ActionTypes.CHANGE_FURNITURE_NUMBER_IN_CART,
+	payload: {
+		furnitureId: furnitureId,
+		number: number,
+	},
+});

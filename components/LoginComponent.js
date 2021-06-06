@@ -137,7 +137,7 @@ class RegisterTab extends Component {
 			lastname: "",
 			email: "",
 			remember: false,
-			imageUrl: baseUrl + "img/king-bed.jpg",
+			imageUrl: baseUrl + "img/logo.png",
 		};
 	}
 

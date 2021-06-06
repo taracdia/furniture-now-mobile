@@ -9,14 +9,20 @@ import {
 	StyleSheet,
 	Alert,
 	PanResponder,
+	SafeAreaView,
 	Share,
 } from "react-native";
 import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import { postFavorite, postComment } from "../redux/ActionCreators";
+import {
+	postFavorite,
+	postComment,
+	changeFurnitureNumber,
+} from "../redux/ActionCreators";
 import * as Animatable from "react-native-animatable";
-import { primaryColor, white, gray } from "../Colors";
+import { primaryColor, secondaryColor, gray } from "../Colors";
+import { TextInput } from "react-native-gesture-handler";
 
 const mapStateToProps = state => {
 	return {
@@ -30,6 +36,8 @@ const mapDispatchToProps = {
 	postFavorite: furnitureId => postFavorite(furnitureId),
 	postComment: (furnitureId, rating, author, text) =>
 		postComment(furnitureId, rating, author, text),
+	changeFurnitureNumber: (furnitureId, number) =>
+		changeFurnitureNumber(furnitureId, number),
 };
 
 function RenderComments({ comments }) {
@@ -66,6 +74,8 @@ function RenderComments({ comments }) {
 function RenderFurniture(props) {
 	const { furniture } = props;
 
+	const [isWidgetShown, showWidget] = React.useState(false);
+
 	const view = React.createRef();
 
 	const recognizeComment = ({ dx }) => (dx > 200 ? true : false);
@@ -98,9 +108,7 @@ function RenderFurniture(props) {
 						{
 							text: "OK",
 							onPress: () =>
-								props.favorite
-									? console.log("Already set as a favorite")
-									: props.markFavorite(),
+								props.changeNumber(furniture.quantity + 1),
 						},
 					],
 					{ cancelable: false }
@@ -112,7 +120,7 @@ function RenderFurniture(props) {
 		},
 	});
 
-	const shareCampsite = (title, message, url) => {
+	const shareFurniture = (title, message, url) => {
 		Share.share(
 			{
 				title: title,
@@ -124,6 +132,41 @@ function RenderFurniture(props) {
 			}
 		);
 	};
+
+	const widget = (
+		<>
+			<Icon
+				name="minus"
+				type="font-awesome"
+				color={secondaryColor}
+				raised
+				reverse
+				onPress={() => {
+					if (furniture.quantity > 0) {
+						props.changeNumber(furniture.quantity - 1);
+					}
+				}}
+			/>
+
+			<SafeAreaView>
+				<TextInput
+					defaultValue={furniture.quantity.toString()}
+					keyboardType="numeric"
+					onSubmitEditing={event =>
+						props.changeNumber(+event.nativeEvent.text)
+					}
+				/>
+			</SafeAreaView>
+			<Icon
+				name="plus"
+				type="font-awesome"
+				color={secondaryColor}
+				raised
+				reverse
+				onPress={() => props.changeNumber(furniture.quantity + 1)}
+			/>
+		</>
+	);
 
 	if (furniture) {
 		return (
@@ -140,18 +183,21 @@ function RenderFurniture(props) {
 				>
 					<Text style={{ margin: 10 }}>{furniture.description}</Text>
 					<View style={styles.cardRow}>
-						<Icon
-							name={props.favorite ? "heart" : "heart-o"}
-							type="font-awesome"
-							color="#f50"
-							raised
-							reverse
-							onPress={() =>
-								props.favorite
-									? console.log("Already")
-									: props.markFavorite()
-							}
-						/>
+						{isWidgetShown ? (
+							widget
+						) : (
+							<Icon
+								name={"shopping-cart"}
+								type="font-awesome"
+								color={secondaryColor}
+								raised
+								reverse
+								onPress={() => {
+									props.changeNumber(1);
+									showWidget(true);
+								}}
+							/>
+						)}
 						<Icon
 							name={"pencil"}
 							type="font-awesome"
@@ -168,7 +214,7 @@ function RenderFurniture(props) {
 							raised
 							reverse
 							onPress={() =>
-								shareCampsite(
+								shareFurniture(
 									furniture.name,
 									furniture.description,
 									baseUrl + furniture.image
@@ -193,15 +239,13 @@ class FurnitureInfo extends Component {
 			text: "",
 		};
 	}
-	markFavorite(furnitureId) {
-		this.props.postFavorite(furnitureId);
+	changeNumber(furnitureId, number) {
+		this.props.changeFurnitureNumber(furnitureId, number);
 	}
 
 	toggleModal() {
 		this.setState({ showModal: !this.state.showModal });
 	}
-
-	//TODO: new comments aren't showing up
 
 	handleComment(furnitureId) {
 		this.props.postComment(
@@ -241,7 +285,9 @@ class FurnitureInfo extends Component {
 				<RenderFurniture
 					furniture={furniture}
 					favorite={this.props.favorites.includes(furnitureId)}
-					markFavorite={() => this.markFavorite(furnitureId)}
+					changeNumber={number =>
+						this.changeNumber(furnitureId, number)
+					}
 					onShowModal={() => this.toggleModal()}
 				/>
 				<RenderComments comments={comments} />

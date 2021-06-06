@@ -25,14 +25,14 @@ class Reservation extends Component {
 	}
 
 	static navigationOptions = {
-		title: "Reserve Campsite",
+		title: "Reserve Furniture",
 	};
 
 	handleReservation() {
 		console.log(JSON.stringify(this.state));
 		Alert.alert(
 			"Begin Search?",
-			"Number of Campers: " +
+			"Number of People: " +
 				this.state.guests +
 				"\n\nHike-In? " +
 				this.state.hikeIn +
@@ -74,7 +74,7 @@ class Reservation extends Component {
 
 			Notifications.scheduleNotificationAsync({
 				content: {
-					title: "Your Campsite Reservation Search",
+					title: "Your Furniture Reservation Search",
 					body: `Search for ${date} requested`,
 					// body: `Search for  requested`,
 				},
@@ -95,7 +95,7 @@ class Reservation extends Component {
 		return (
 			<Animatable.View animation="zoomIn" duration={2000} delay={1000}>
 				<View style={styles.formRow}>
-					<Text style={styles.formLabel}>Number of Campers</Text>
+					<Text style={styles.formLabel}>Number of People</Text>
 					<Picker
 						style={styles.formItem}
 						selectedValue={this.state.guests}
