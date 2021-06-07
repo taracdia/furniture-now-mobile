@@ -19,13 +19,13 @@ class Reservation extends Component {
 
 		this.state = {
 			guests: 1,
-			hikeIn: false,
+			guided: false,
 			date: "",
 		};
 	}
 
 	static navigationOptions = {
-		title: "Reserve Furniture",
+		title: "Reserve Walkthrough Time",
 	};
 
 	handleReservation() {
@@ -34,8 +34,8 @@ class Reservation extends Component {
 			"Begin Search?",
 			"Number of People: " +
 				this.state.guests +
-				"\n\nHike-In? " +
-				this.state.hikeIn +
+				"\n\nGuided? " +
+				this.state.guided +
 				"\n\nDate: " +
 				this.state.date,
 			[
@@ -59,7 +59,7 @@ class Reservation extends Component {
 	resetForm() {
 		this.setState({
 			guests: 1,
-			hikeIn: false,
+			guided: false,
 			date: "",
 		});
 	}
@@ -112,13 +112,13 @@ class Reservation extends Component {
 					</Picker>
 				</View>
 				<View style={styles.formRow}>
-					<Text style={styles.formLabel}>Hike-In?</Text>
+					<Text style={styles.formLabel}>Guided?</Text>
 					<Switch
 						style={styles.formItem}
-						value={this.state.hikeIn}
+						value={this.state.guided}
 						trackColor={{ true: primaryColor, false: null }}
 						onValueChange={value =>
-							this.setState({ hikeIn: value })
+							this.setState({ guided: value })
 						}
 					></Switch>
 				</View>
