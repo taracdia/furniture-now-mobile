@@ -3,7 +3,6 @@ import {
 	Text,
 	View,
 	ScrollView,
-	FlatList,
 	Modal,
 	Button,
 	StyleSheet,
@@ -15,61 +14,24 @@ import {
 import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import {
-	postFavorite,
-	postComment,
-	changeFurnitureNumber,
-} from "../redux/ActionCreators";
+import { postComment, changeFurnitureNumber } from "../redux/ActionCreators";
 import * as Animatable from "react-native-animatable";
 import { primaryColor, secondaryColor, gray } from "../Colors";
 import { TextInput } from "react-native-gesture-handler";
-
+import Comments from "./CommentsComponent";
 const mapStateToProps = state => {
 	return {
 		furnitures: state.furnitures,
 		comments: state.comments,
-		favorites: state.favorites,
 	};
 };
 
 const mapDispatchToProps = {
-	postFavorite: furnitureId => postFavorite(furnitureId),
 	postComment: (furnitureId, rating, author, text) =>
 		postComment(furnitureId, rating, author, text),
 	changeFurnitureNumber: (furnitureId, number) =>
 		changeFurnitureNumber(furnitureId, number),
 };
-
-function RenderComments({ comments }) {
-	const renderCommentItem = ({ item }) => {
-		return (
-			<View style={{ margin: 10 }}>
-				<Text style={{ fontSize: 14 }}>{item.text}</Text>
-				<Rating
-					startingValue={item.rating}
-					imageSize={10}
-					style={{ alignItems: "flex-start", paddingVertical: "5%" }}
-					readonly
-				/>
-				<Text
-					style={{ fontSize: 12 }}
-				>{`-- ${item.author}, ${item.date}`}</Text>
-			</View>
-		);
-	};
-
-	return (
-		<Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
-			<Card title="Comments">
-				<FlatList
-					data={comments}
-					renderItem={renderCommentItem}
-					keyExtractor={item => item.id.toString()}
-				/>
-			</Card>
-		</Animatable.View>
-	);
-}
 
 function RenderFurniture(props) {
 	const { furniture } = props;
@@ -80,30 +42,24 @@ function RenderFurniture(props) {
 
 	const recognizeComment = ({ dx }) => (dx > 200 ? true : false);
 
-	const recognizeDrag = ({ dx }) => (dx < -200 ? true : false);
+	const recognizeCart = ({ dx }) => (dx < -200 ? true : false);
 
 	const panResponder = PanResponder.create({
 		onStartShouldSetPanResponder: () => true,
 		onPanResponderGrant: () => {
-			view.current
-				.rubberBand(1000)
-				.then(endState =>
-					console.log(endState.finished ? "finished" : "canceled")
-				);
+			view.current.rubberBand(1000);
 		},
 		onPanResponderEnd: (e, gestureState) => {
-			console.log("pan responder end", gestureState);
-			if (recognizeDrag(gestureState)) {
+			if (recognizeCart(gestureState)) {
 				Alert.alert(
-					"Add Favorite",
+					"Add to Cart",
 					"Are you sure you wish to add " +
 						furniture.name +
-						" to favorites?",
+						" to your cart?",
 					[
 						{
 							text: "Cancel",
 							style: "cancel",
-							onPress: () => console.log("Cancel Pressed"),
 						},
 						{
 							text: "OK",
@@ -284,13 +240,12 @@ class FurnitureInfo extends Component {
 			<ScrollView>
 				<RenderFurniture
 					furniture={furniture}
-					favorite={this.props.favorites.includes(furnitureId)}
 					changeNumber={number =>
 						this.changeNumber(furnitureId, number)
 					}
 					onShowModal={() => this.toggleModal()}
 				/>
-				<RenderComments comments={comments} />
+				<Comments comments={comments} />
 				<Modal
 					animationType={"slide"}
 					transparent={false}
