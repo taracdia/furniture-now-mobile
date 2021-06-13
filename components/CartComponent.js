@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { FlatList, View, Text, StyleSheet, Alert } from "react-native";
-import { ListItem } from "react-native-elements";
+import { FlatList, View, Text, StyleSheet, Alert, Image } from "react-native";
+import { Icon } from "react-native-elements";
+
 import { connect } from "react-redux";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
-import { SwipeRow } from "react-native-swipe-list-view";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { changeFurnitureNumber } from "../redux/ActionCreators";
 import * as Animatable from "react-native-animatable";
+import CartWidget from "./CartWidget";
 
 const mapStateToProps = state => {
 	return {
@@ -21,61 +22,61 @@ const mapDispatchToProps = {
 };
 
 class Cart extends Component {
-	static navigationOptions = {
-		title: "Cart",
-	};
+	// static navigationOptions = {
+	// 	title: "Cart",
+	// };
 
 	render() {
 		const { navigate } = this.props.navigation;
 		const renderCartItem = ({ item }) => {
 			return (
-				<SwipeRow rightOpenValue={-100} style={styles.swipeRow}>
-					<View style={styles.deleteView}>
-						<TouchableOpacity
-							style={styles.deleteTouchable}
-							onPress={() =>
-								Alert.alert(
-									"Delete from Cart?",
-									"Are you sure you wish to delete the furniture " +
-										item.name +
-										" from your cart?",
-									[
-										{
-											text: "Cancel",
-											style: "cancel",
-										},
-										{
-											text: "OK",
-											onPress: () =>
-												this.props.changeFurnitureNumber(
-													item.id,
-													0
-												),
-										},
-									],
-									{ cancelable: false }
-								)
-							}
-						>
-							<Text style={styles.deleteText}>Delete</Text>
-						</TouchableOpacity>
-					</View>
-
-					<View>
-						<ListItem
-							title={item.name}
-							subtitle={item.description}
-							leftAvatar={{
-								source: { uri: baseUrl + item.image },
-							}}
-							onPress={() =>
-								navigate("FurnitureInfo", {
-									furnitureId: item.id,
-								})
-							}
+				<View style={styles.row}>
+					<TouchableOpacity
+						onPress={() =>
+							navigate("FurnitureInfo", {
+								furnitureId: item.id,
+							})
+						}
+						style={styles.row}
+					>
+						<Image
+							source={{ uri: baseUrl + item.image }}
+							style={{ width: 50, height: 50, margin: 10 }}
 						/>
-					</View>
-				</SwipeRow>
+						<Text>{item.name}</Text>
+						<CartWidget furniture={item} />
+					</TouchableOpacity>
+					<Icon
+						name="trash"
+						type="font-awesome"
+						color="red"
+						raised
+						reverse
+						onPress={() =>
+							Alert.alert(
+								"Delete from Cart?",
+								"Are you sure you wish to delete the " +
+									item.name +
+									" from your cart?",
+								[
+									{
+										text: "Cancel",
+										style: "cancel",
+									},
+									{
+										text: "OK",
+										onPress: () =>
+											this.props.changeFurnitureNumber(
+												item.id,
+												0
+											),
+									},
+								],
+								{ cancelable: false }
+							)
+						}
+					/>
+				</View>
 			);
 		};
 
@@ -102,24 +103,11 @@ class Cart extends Component {
 		);
 	}
 }
+
 const styles = StyleSheet.create({
-	deleteView: {
-		flexDirection: "row",
-		justifyContent: "flex-end",
+	row: {
 		alignItems: "center",
-		flex: 1,
-	},
-	deleteTouchable: {
-		backgroundColor: "red",
-		height: "100%",
-		justifyContent: "center",
-	},
-	deleteText: {
-		color: "white",
-		fontWeight: "700",
-		textAlign: "center",
-		fontSize: 16,
-		width: 100,
+		flexDirection: "row",
 	},
 });
 

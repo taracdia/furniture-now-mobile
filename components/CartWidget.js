@@ -1,12 +1,25 @@
 import React from "react";
 import { SafeAreaView } from "react-native";
 import { Icon } from "react-native-elements";
-
+import { connect } from "react-redux";
+import { changeFurnitureNumber } from "../redux/ActionCreators";
 import { secondaryColor } from "../Colors";
 import { TextInput } from "react-native-gesture-handler";
 
+const mapDispatchToProps = {
+	changeFurnitureNumber: (furnitureId, number) =>
+		changeFurnitureNumber(furnitureId, number),
+};
+
 function CartWidget(props) {
-	const { number, changeNumber } = props;
+	const { furniture } = props;
+
+	const [shownNumber, setShownNumber] = React.useState(furniture.quantity);
+
+	const changeNumber = newQuantity => {
+		props.changeFurnitureNumber(furniture.id, newQuantity);
+		setShownNumber(newQuantity);
+	};
 	return (
 		<>
 			<Icon
@@ -16,19 +29,17 @@ function CartWidget(props) {
 				raised
 				reverse
 				onPress={() => {
-					if (number > 0) {
-						changeNumber(number - 1);
+					if (furniture.quantity > 0) {
+						changeNumber(furniture.quantity - 1);
 					}
 				}}
 			/>
 
 			<SafeAreaView>
 				<TextInput
-					value={number.toString()}
+					value={shownNumber.toString()}
 					keyboardType="numeric"
-					onSubmitEditing={event =>
-						changeNumber(+event.nativeEvent.text)
-					}
+					onChange={event => changeNumber(+event.nativeEvent.text)}
 				/>
 			</SafeAreaView>
 			<Icon
@@ -37,10 +48,12 @@ function CartWidget(props) {
 				color={secondaryColor}
 				raised
 				reverse
-				onPress={() => changeNumber(number + 1)}
+				onPress={() => {
+					changeNumber(furniture.quantity + 1);
+				}}
 			/>
 		</>
 	);
 }
 
-export default CartWidget;
+export default connect(null, mapDispatchToProps)(CartWidget);

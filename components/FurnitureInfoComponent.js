@@ -104,12 +104,13 @@ function RenderFurniture(props) {
 				>
 					<Text style={{ margin: 10 }}>{furniture.description}</Text>
 					<View style={styles.cardRow}>
-						{furnitureNumber ? (
+						{furniture.quantity ? (
 							<CartWidget
-								number={furniture.quantity}
-								changeNumber={num => {
-									props.changeNumber(num);
-								}}
+								// number={furniture.quantity}
+								// changeNumber={num => {
+								// 	props.changeNumber(num);
+								// }}
+								furniture={furniture}
 							/>
 						) : (
 							<Icon
