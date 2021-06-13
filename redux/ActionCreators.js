@@ -94,23 +94,6 @@ export const addFurnitures = furnitures => ({
 	payload: furnitures,
 });
 
-export const postFavorite = furnitureId => dispatch => {
-	console.log(furnitureId);
-	setTimeout(() => {
-		dispatch(addFavorite(furnitureId));
-	}, 2000);
-};
-
-export const addFavorite = furnitureId => ({
-	type: ActionTypes.ADD_FAVORITE,
-	payload: furnitureId,
-});
-
-export const deleteFavorite = furnitureId => ({
-	type: ActionTypes.DELETE_FAVORITE,
-	payload: furnitureId,
-});
-
 export const changeFurnitureNumber = (furnitureId, number) => ({
 	type: ActionTypes.CHANGE_FURNITURE_NUMBER_IN_CART,
 	payload: {

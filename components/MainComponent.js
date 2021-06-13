@@ -21,7 +21,7 @@ import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { fetchFurnitures, fetchComments } from "../redux/ActionCreators";
 import Reservation from "./ReservationComponent";
-import Favorites from "./FavoritesComponent";
+import Cart from "./CartComponent";
 import Login from "./LoginComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { primaryColor, white, primaryLight, secondaryColor } from "../Colors";
@@ -167,8 +167,8 @@ const MainNavigator = createDrawerNavigator(
 			},
 		},
 
-		Favorites: {
-			screen: createNavigator("Favorites", Favorites, "shopping-cart"),
+		Cart: {
+			screen: createNavigator("Cart", Cart, "shopping-cart"),
 			navigationOptions: {
 				drawerIcon: ({ tintColor }) => (
 					<Icon

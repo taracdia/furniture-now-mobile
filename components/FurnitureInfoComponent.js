@@ -34,9 +34,7 @@ const mapDispatchToProps = {
 };
 
 function RenderFurniture(props) {
-	const { furniture } = props;
-
-	const [isWidgetShown, showWidget] = React.useState(false);
+	const { furniture, furnitureNumber } = props;
 
 	const view = React.createRef();
 
@@ -106,7 +104,7 @@ function RenderFurniture(props) {
 
 			<SafeAreaView>
 				<TextInput
-					defaultValue={furniture.quantity.toString()}
+					value={furnitureNumber.toString()}
 					keyboardType="numeric"
 					onSubmitEditing={event =>
 						props.changeNumber(+event.nativeEvent.text)
@@ -139,7 +137,7 @@ function RenderFurniture(props) {
 				>
 					<Text style={{ margin: 10 }}>{furniture.description}</Text>
 					<View style={styles.cardRow}>
-						{isWidgetShown ? (
+						{furnitureNumber ? (
 							widget
 						) : (
 							<Icon
@@ -150,7 +148,6 @@ function RenderFurniture(props) {
 								reverse
 								onPress={() => {
 									props.changeNumber(1);
-									showWidget(true);
 								}}
 							/>
 						)}
@@ -193,10 +190,20 @@ class FurnitureInfo extends Component {
 			rating: 5,
 			author: "",
 			text: "",
+			furnitureNumber: 0,
 		};
 	}
+	componentDidMount() {
+		const furnitureId = this.props.navigation.getParam("furnitureId");
+		const furniture = this.props.furnitures.furnitures.filter(
+			furniture => furniture.id === furnitureId
+		)[0];
+		this.setState({ furnitureNumber: furniture.quantity });
+	}
+
 	changeNumber(furnitureId, number) {
 		this.props.changeFurnitureNumber(furnitureId, number);
+		this.setState({ furnitureNumber: number });
 	}
 
 	toggleModal() {
@@ -244,6 +251,7 @@ class FurnitureInfo extends Component {
 						this.changeNumber(furnitureId, number)
 					}
 					onShowModal={() => this.toggleModal()}
+					furnitureNumber={this.state.furnitureNumber}
 				/>
 				<Comments comments={comments} />
 				<Modal

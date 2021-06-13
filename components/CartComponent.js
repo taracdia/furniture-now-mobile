@@ -6,28 +6,28 @@ import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { SwipeRow } from "react-native-swipe-list-view";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { deleteFavorite } from "../redux/ActionCreators";
+import { changeFurnitureNumber } from "../redux/ActionCreators";
 import * as Animatable from "react-native-animatable";
 
 const mapStateToProps = state => {
 	return {
 		furnitures: state.furnitures,
-		favorites: state.favorites,
 	};
 };
 
 const mapDispatchToProps = {
-	deleteFavorite: furnitureId => deleteFavorite(furnitureId),
+	changeFurnitureNumber: (furnitureId, number) =>
+		changeFurnitureNumber(furnitureId, number),
 };
 
-class Favorites extends Component {
+class Cart extends Component {
 	static navigationOptions = {
-		title: "My Favorites",
+		title: "Cart",
 	};
 
 	render() {
 		const { navigate } = this.props.navigation;
-		const renderFavoriteItem = ({ item }) => {
+		const renderCartItem = ({ item }) => {
 			return (
 				<SwipeRow rightOpenValue={-100} style={styles.swipeRow}>
 					<View style={styles.deleteView}>
@@ -35,24 +35,21 @@ class Favorites extends Component {
 							style={styles.deleteTouchable}
 							onPress={() =>
 								Alert.alert(
-									"Delete Favorite?",
-									"Are you sure you wish to delete the favorite furniture " +
+									"Delete from Cart?",
+									"Are you sure you wish to delete the furniture " +
 										item.name +
-										"?",
+										" from your cart?",
 									[
 										{
 											text: "Cancel",
-											onPress: () =>
-												console.log(
-													item.name + "Not Deleted"
-												),
 											style: "cancel",
 										},
 										{
 											text: "OK",
 											onPress: () =>
-												this.props.deleteFavorite(
-													item.id
+												this.props.changeFurnitureNumber(
+													item.id,
+													0
 												),
 										},
 									],
@@ -95,10 +92,10 @@ class Favorites extends Component {
 		return (
 			<Animatable.View animation="fadeInRightBig" duration={2000}>
 				<FlatList
-					data={this.props.furnitures.furnitures.filter(furniture =>
-						this.props.favorites.includes(furniture.id)
+					data={this.props.furnitures.furnitures.filter(
+						furniture => furniture.quantity > 0
 					)}
-					renderItem={renderFavoriteItem}
+					renderItem={renderCartItem}
 					keyExtractor={item => item.id.toString()}
 				/>
 			</Animatable.View>
@@ -126,4 +123,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
