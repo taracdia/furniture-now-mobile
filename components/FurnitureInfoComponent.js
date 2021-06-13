@@ -19,6 +19,8 @@ import * as Animatable from "react-native-animatable";
 import { primaryColor, secondaryColor, gray } from "../Colors";
 import { TextInput } from "react-native-gesture-handler";
 import Comments from "./CommentsComponent";
+import CartWidget from "./CartWidget";
+
 const mapStateToProps = state => {
 	return {
 		furnitures: state.furnitures,
@@ -87,41 +89,6 @@ function RenderFurniture(props) {
 		);
 	};
 
-	const widget = (
-		<>
-			<Icon
-				name="minus"
-				type="font-awesome"
-				color={secondaryColor}
-				raised
-				reverse
-				onPress={() => {
-					if (furniture.quantity > 0) {
-						props.changeNumber(furniture.quantity - 1);
-					}
-				}}
-			/>
-
-			<SafeAreaView>
-				<TextInput
-					value={furnitureNumber.toString()}
-					keyboardType="numeric"
-					onSubmitEditing={event =>
-						props.changeNumber(+event.nativeEvent.text)
-					}
-				/>
-			</SafeAreaView>
-			<Icon
-				name="plus"
-				type="font-awesome"
-				color={secondaryColor}
-				raised
-				reverse
-				onPress={() => props.changeNumber(furniture.quantity + 1)}
-			/>
-		</>
-	);
-
 	if (furniture) {
 		return (
 			<Animatable.View
@@ -138,7 +105,12 @@ function RenderFurniture(props) {
 					<Text style={{ margin: 10 }}>{furniture.description}</Text>
 					<View style={styles.cardRow}>
 						{furnitureNumber ? (
-							widget
+							<CartWidget
+								number={furniture.quantity}
+								changeNumber={num => {
+									props.changeNumber(num);
+								}}
+							/>
 						) : (
 							<Icon
 								name={"shopping-cart"}
