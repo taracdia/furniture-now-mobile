@@ -182,138 +182,112 @@ function RenderFurniture(props) {
 	return <View />;
 }
 
-class FurnitureInfo extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			showModal: false,
-			rating: 5,
-			author: "",
-			text: "",
-			furnitureNumber: 0,
-		};
-	}
-	componentDidMount() {
-		const furnitureId = this.props.navigation.getParam("furnitureId");
-		const furniture = this.props.furnitures.furnitures.filter(
-			furniture => furniture.id === furnitureId
-		)[0];
-		this.setState({ furnitureNumber: furniture.quantity });
-	}
+function FurnitureInfo(props) {
+	const furnitureId = props.navigation.getParam("furnitureId");
+	const furniture = props.furnitures.furnitures.filter(
+		furniture => furniture.id === furnitureId
+	)[0];
 
-	changeNumber(furnitureId, number) {
-		this.props.changeFurnitureNumber(furnitureId, number);
-		this.setState({ furnitureNumber: number });
-	}
+	const comments = props.comments.comments.filter(
+		comment => comment.furnitureId === furnitureId
+	);
 
-	toggleModal() {
-		this.setState({ showModal: !this.state.showModal });
+	const [furnitureNumber, setShownNumber] = React.useState(
+		furniture.quantity
+	);
+
+	const [showModal, setShowModal] = React.useState(false);
+
+	const [rating, setRating] = React.useState(5);
+
+	const [author, setAuthor] = React.useState("");
+	const [text, setText] = React.useState("");
+
+	function changeNumber(furnitureId, number) {
+		props.changeFurnitureNumber(furnitureId, number);
+		setShownNumber(number);
 	}
 
-	handleComment(furnitureId) {
-		this.props.postComment(
-			furnitureId,
-			this.state.rating,
-			this.state.author,
-			this.state.text
-		);
-		this.toggleModal();
+	function toggleModal() {
+		setShowModal(!showModal);
 	}
 
-	resetForm() {
-		this.setState({
-			showModal: false,
-			rating: 5,
-			author: "",
-			text: "",
-		});
+	function handleComment(furnitureId) {
+		props.postComment(furnitureId, rating, author, text);
+		toggleModal();
 	}
 
-	static navigationOptions = {
-		title: "Furniture Information",
-	};
+	function resetForm() {
+		setText("");
+		setAuthor("");
+		setShowModal(false);
+		setRating(5);
+	}
 
-	render() {
-		const furnitureId = this.props.navigation.getParam("furnitureId");
-		const furniture = this.props.furnitures.furnitures.filter(
-			furniture => furniture.id === furnitureId
-		)[0];
-
-		const comments = this.props.comments.comments.filter(
-			comment => comment.furnitureId === furnitureId
-		);
-
-		return (
-			<ScrollView>
-				<RenderFurniture
-					furniture={furniture}
-					changeNumber={number =>
-						this.changeNumber(furnitureId, number)
-					}
-					onShowModal={() => this.toggleModal()}
-					furnitureNumber={this.state.furnitureNumber}
-				/>
-				<Comments comments={comments} />
-				<Modal
-					animationType={"slide"}
-					transparent={false}
-					visible={this.state.showModal}
-					onRequestClose={() => this.toggleModal()}
-				>
-					<View style={styles.modal}>
-						<Rating
-							showRating
-							startingValue={this.state.rating}
-							imageSize={40}
-							onFinishRating={rating =>
-								this.setState({ rating: rating })
-							}
-							style={{ paddingVertical: 10 }}
-						/>
-						<Input
-							placeholder="Author"
-							leftIcon={{ type: "font-awesome", name: "user-o" }}
-							leftIconContainerStyle={{ paddingRight: 10 }}
-							onChangeText={text =>
-								this.setState({ author: text })
-							}
-							value={this.state.author}
-						/>
-						<Input
-							placeholder="Comment"
-							leftIcon={{
-								type: "font-awesome",
-								name: "comment-o",
+	return (
+		<ScrollView>
+			<RenderFurniture
+				furniture={furniture}
+				changeNumber={number => changeNumber(furnitureId, number)}
+				onShowModal={() => toggleModal()}
+				furnitureNumber={furnitureNumber}
+			/>
+			<Comments comments={comments} />
+			<Modal
+				animationType={"slide"}
+				transparent={false}
+				visible={showModal}
+				onRequestClose={() => toggleModal()}
+			>
+				<View style={styles.modal}>
+					<Rating
+						showRating
+						startingValue={rating}
+						imageSize={40}
+						onFinishRating={rating => setRating(rating)}
+						style={{ paddingVertical: 10 }}
+					/>
+					<Input
+						placeholder="Author"
+						leftIcon={{ type: "font-awesome", name: "user-o" }}
+						leftIconContainerStyle={{ paddingRight: 10 }}
+						onChangeText={text => setAuthor(text)}
+						value={author}
+					/>
+					<Input
+						placeholder="Comment"
+						leftIcon={{
+							type: "font-awesome",
+							name: "comment-o",
+						}}
+						leftIconContainerStyle={{ paddingRight: 10 }}
+						onChangeText={text => setText(text)}
+						value={text}
+					/>
+					<View>
+						<Button
+							title="Submit"
+							color={primaryColor}
+							onPress={() => {
+								handleComment(furnitureId);
+								resetForm();
 							}}
-							leftIconContainerStyle={{ paddingRight: 10 }}
-							onChangeText={text => this.setState({ text: text })}
-							value={this.state.text}
 						/>
-						<View>
-							<Button
-								title="Submit"
-								color={primaryColor}
-								onPress={() => {
-									this.handleComment(furnitureId);
-									this.resetForm();
-								}}
-							/>
-						</View>
-						<View style={{ margin: 10 }}>
-							<Button
-								onPress={() => {
-									this.toggleModal();
-									this.resetForm();
-								}}
-								color={gray}
-								title="Cancel"
-							/>
-						</View>
 					</View>
-				</Modal>
-			</ScrollView>
-		);
-	}
+					<View style={{ margin: 10 }}>
+						<Button
+							onPress={() => {
+								toggleModal();
+								resetForm();
+							}}
+							color={gray}
+							title="Cancel"
+						/>
+					</View>
+				</View>
+			</Modal>
+		</ScrollView>
+	);
 }
 
 const styles = StyleSheet.create({
